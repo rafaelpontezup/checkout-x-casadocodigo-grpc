@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.zup.edu.casadocodigo";
+option java_outer_classname = "CasadocodigoGrpcKotlin";
+
+package br.com.zup.edu.casadocodigo;
+import "google/protobuf/timestamp.proto";
+
+service CasadocodigoGrpcKotlinService {
+
+  rpc cadastra(NovoAutorRequest) returns (NovoAutorResponse) {}
+}
+
+message NovoAutorRequest {
+
+  message Endereco {
+    string rua = 1;
+    string numero = 2;
+  }
+
+  string nome = 1;
+  string email = 2;
+  string descricao = 3;
+
+  Endereco endereco = 4;
+}
+
+message NovoAutorResponse {
+
+  int64 id = 1;
+  google.protobuf.Timestamp criadoEm = 2; // yyyy-MM-dd HH:mm:ss
+}
